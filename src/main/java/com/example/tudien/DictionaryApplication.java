@@ -404,6 +404,7 @@ public class DictionaryApplication extends Application {
         }
         observableList.clear();
         observableList.addAll(a);
+        meaning.setText("meaning");
     }
     public void runApplication() {
         launch();
