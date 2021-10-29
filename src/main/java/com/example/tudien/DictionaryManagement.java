@@ -46,7 +46,8 @@ public class DictionaryManagement extends Dictionary {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         boolean found = false;
-        for(Word word : list) {
+        for(int i = 0 ; i < list.size(); i++) {
+            Word word = list.get(i);
             if(word.getWord_target().equals(input)) {
                 found = true;
                 System.out.println("Từ bạn tra có nghĩa là: " + word.getWord_explain());
@@ -60,8 +61,7 @@ public class DictionaryManagement extends Dictionary {
     }
     public void addNewWord(String word_target, String word_explain) throws IOException {
         boolean check = true;
-        for(int i = 0 ; i < list.size(); i++) {
-            Word w = list.get(i);
+        for(Word w : list) {
             if(w.getWord_target().equalsIgnoreCase(word_target)) {
                 check = false;
                 break;
@@ -70,23 +70,21 @@ public class DictionaryManagement extends Dictionary {
         if(!check) {
             System.out.println("Từ này đã có trong từ điển");
         }
-
         else {
             list.add(new Word(word_target,word_explain));
         }
-
-
     }
+
+
     public void removeWord(String word) {
-        for(int i = 0; i < list.size(); i++) {
-            Word w = list.get(i);
+        for(Word w : list) {
             if(w.getWord_target().equalsIgnoreCase(word)) {
-                Word remove = list.get(i);
-                list.remove(remove);
+                list.remove(w);
                 break;
             }
         }
     }
+
     public void editWord(String word) {
         int mark = 0;
         boolean check = false;
@@ -111,8 +109,7 @@ public class DictionaryManagement extends Dictionary {
     }
     public void dictionaryExportToFile() throws IOException {
         FileWriter fw = new FileWriter("src/main/java/com/example/tudien/data/dictionaries.txt");
-        for (int i = 0 ;i < list.size();i++) {
-            Word word = list.get(i);
+        for (Word word : list) {
             fw.write(String.format("%s\t%s\n", word.getWord_target(), word.getWord_explain()));
         }
         fw.close();

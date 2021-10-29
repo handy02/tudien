@@ -47,30 +47,5 @@ public class Main {
         }while (opt != 0);
     }
 }
-/**
- System.out.println("=============== TỪ ĐIỂN ANH VIỆT ==============");
- System.out.println(" 1. Them tu moi");
- System.out.println(" 2. In ra tat ca cac tu");
- System.out.println(" 3. Them tu moi tu file");
- System.out.println(" 4. Tra tu");
- System.out.println(" 5. Xoa tu");
- boolean check = true;
- int option = -1;
- while(check);
- switch (option) {
- case 1: {
- manage.insertFromCommandline();
- break;
- }
- case 2: {
- command.showAllWords();
- }
- case 3: {
- manage.insertFromFile();
- }
- case 4: {
- manage.dictionaryLookup();
- }
- }
- }*/
+
 

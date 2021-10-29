@@ -11,13 +11,12 @@ public class DictionaryCommandLine extends Dictionary{
 
     public void showAllWords() {
         System.out.printf("%-8s|%-30s|%s\n", "No", "English", "Tiếng Việt");
-
-        for (int i = 0; i < list.size(); ++i) {
-            String no = String.valueOf(i + 1);
-            Word w = list.get(i);
+        int count = 1;
+        for (Word w : list) {
             String t = w.getWord_target();
             String e = w.getWord_explain();
-            System.out.printf("%-8s|%-30s|%s\n", no, t, e);
+            System.out.printf("%-8s|%-30s|%s\n",count , t, e);
+            count ++;
         }
     }
 
@@ -117,8 +116,7 @@ public class DictionaryCommandLine extends Dictionary{
     public void dictionarySearcher (String t) {
         System.out.printf("%-30s|%s\n", "English", "Tieng Viet");
         boolean check = false;
-        for (int i = 0 ; i < list.size(); ++i) {
-            Word w = list.get(i);
+        for (Word w : list) {
             if (w.getWord_target().startsWith(t)) {
                 System.out.printf("%-30s|%s\n", w.getWord_target(), w.getWord_explain());
                 check = true;

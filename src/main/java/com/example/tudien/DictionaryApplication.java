@@ -95,7 +95,6 @@ public class DictionaryApplication extends Application {
         wordField.setPrefWidth(251);
         wordField.setPrefHeight(30);
         wordField.setPromptText("Enter a word");
-
         wordField.setOnKeyReleased(e -> textFieldGo());
 
         Button lookUpButton = new Button("Look up");
@@ -150,6 +149,7 @@ public class DictionaryApplication extends Application {
         meaning = new Label("Meaning");
         meaning.setAlignment(Pos.CENTER);
         meaning.setPrefWidth(550);
+        meaning.setStyle("-fx-font-size: 15;");
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -167,7 +167,7 @@ public class DictionaryApplication extends Application {
                 str = str.substring(1, str.length() - 1);
                 wordField.setText(str);
                 int result = dictionary.search(str);
-                meaning.setText(dictionary.getList().get(result).getWord_explain());
+                meaning.setText("Meaning\n\n-" + dictionary.getList().get(result).getWord_explain());
             }
         });
         HBox output = new HBox(10);
@@ -193,7 +193,7 @@ public class DictionaryApplication extends Application {
         if (!s.equals("")) {
             int result = dictionary.search(s);
             if (result >= 0) {
-                meaning.setText(dictionary.getList().get(result).getWord_explain());
+                meaning.setText("Meaning\n\n-" + dictionary.getList().get(result).getWord_explain());
 
             } else {
                 meaning.setText("Word not found,you may want to use Google Translate button");
@@ -357,7 +357,7 @@ public class DictionaryApplication extends Application {
 
     private void useGoogleApiButton() throws IOException {
         String s = GoogleApi.translate("en", "vi", wordField.getText());
-        meaning.setText(s);
+        meaning.setText("Meaning\n\n" + s);
     }
 
     private void speakButton() {
@@ -404,7 +404,7 @@ public class DictionaryApplication extends Application {
         }
         observableList.clear();
         observableList.addAll(a);
-        meaning.setText("meaning");
+        meaning.setText("Meaning");
     }
     public void runApplication() {
         launch();
